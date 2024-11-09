@@ -1,0 +1,78 @@
+<div class="container dashboard">
+  <div class="row">
+    <div class="col">
+      <div class="container mt-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-3">Fall 2024 CS 5525 Cloud Computing Assignment 6</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="display: flex;">
+                        <h5>Name :</h5> <h5 class="text-primary ms-1">Kapil Sri Sai Pushadapu</h5>
+                    </li>
+                    <li class="list-group-item" style="display: flex;">
+                        <h5>ID :</h5> <h5 class="text-success ms-1">16359333</h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <p-tabView>
+        <p-tabPanel header="Tabular View">
+          <p-table [value]="StateLevelCovidData" responsiveLayout="scroll" [paginator]="true" [totalRecords]="StateLevelCovidData.length"
+          [rows]="8" styleClass="p-datatable-striped">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name">State <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="population">Population <p-sortIcon field="population"></p-sortIcon></th>
+                    <th pSortableColumn="total_cases">Total Cases <p-sortIcon field="total_cases"></p-sortIcon></th>
+                    <th pSortableColumn="total_deaths">Total Deaths <p-sortIcon field="total_deaths"></p-sortIcon></th>
+                    <th pSortableColumn="new_cases">New Cases <p-sortIcon field="new_cases"></p-sortIcon></th>
+                    <th pSortableColumn="new_deaths">New Deaths <p-sortIcon field="new_deaths"></p-sortIcon></th>
+                    <th>Hospital Bed (Usage/Capacity)</th>
+                    <th>ICU Bed (Usage/Capacity)</th>
+                    <th pSortableColumn="vaccinesDistributed">Vaccinations Distributed <p-sortIcon field="vaccinesDistributed"></p-sortIcon></th>
+                    <th pSortableColumn="vaccinationsI">Vaccinations Initiated(%) <p-sortIcon field="vaccinationsI"></p-sortIcon></th>
+                    <th pSortableColumn="vaccinationsC">Vaccinations Completed(%) <p-sortIcon field="vaccinationsC"></p-sortIcon></th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-state>
+                <tr>
+                    <td>{{state.name}}</td>
+                    <td>{{state.population}}</td>
+                    <td>{{state.total_cases}}</td>
+                    <td>{{state.total_deaths}}</td>
+                    <td>{{state.new_cases}}</td>
+                    <td>{{state.new_deaths}}</td>
+                    <td>{{state.hospital_bed_usage}}/{{state.hospital_bed_capacity}}</td>
+                    <td>{{state.icu_bed_usage}}/{{state.icu_bed_capacity}}</td>
+                    <td>{{state.vaccinesDistributed}}</td>
+                    <td>{{(state.vaccinationsInitiated/state.population)*100 | number: '1.2-2'}}</td>
+                    <td>{{(state.vaccinationsCompleted/state.population)*100 | number: '1.2-2'}}</td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+        </p-tabPanel>
+        <p-tabPanel header="Visualization">
+          <div>
+            <div class="row">
+              <div class="col-md-6" *ngFor="let data of graph_data let i=index">
+                <div class="card mt-3">
+                  <h5>{{data.datasets[0].label}}</h5>
+                  <p-chart type="bar" [data]="data" [options]="basicOptions"></p-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+    </p-tabView>
+
+    </div>
+  </div>
+</div>

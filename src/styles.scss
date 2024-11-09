@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+.p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  font-weight: 600;
+  color: white !important;
+  background: #262626 !important;
+  transition: box-shadow 0.2s;
+}
+
+.navbar-brand{
+  color: white !important;
+}
+
+.nav-link{
+  color: white !important;
+}
